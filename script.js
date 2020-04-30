@@ -12,8 +12,8 @@ function generatePassword() {
   var wantsNumbers = false;
   var wantsSpecialCharacters = false;
   var done = false;
-  var possibles[];
-  var results[];
+  var possibles = [];
+  var results = [];
 
   while (!allChoices)
   {
