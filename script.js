@@ -17,6 +17,7 @@ function generatePassword() {
 
   while (!allChoices)
   {
+    //First, find out how many characters they want. Don't let them leave until we have valid data to work with (a number between 8 and 128)
     while (!done) {
       var numCharacters = prompt("How many characters would you like your password to have?");
 
@@ -26,6 +27,7 @@ function generatePassword() {
         done = true;
     }
 
+    // Now we want to ensure that we have at least one of these choices. Don't let the user leave until we do. (upper/lower/numbers/specials)
     wantslowerCase = confirm("Do you want to include lower case letters?");
     wantsUpperCase = confirm("Do you want to include upper case letters?");
     wantsNumbers = confirm("Do you want to include numbers?");
@@ -37,6 +39,7 @@ function generatePassword() {
       alert("Please be sure to select at least one of the choices.");
   }
 
+  // Push all choices into another array
   if (wantslowerCase)
     possibles.push(lowerCaseLetters);
 
@@ -49,23 +52,24 @@ function generatePassword() {
   if (wantsSpecialCharacters)
     possibles.push(specialCharacters);
 
-   for (var characters = 1; characters <= numCharacters; characters++)
-   {
-     //First, pull randomly from the possible initial choices (upper/lower/numbers/specials)
-     var random =  possibles[Math.floor(Math.random() * possibles.length)];
+  // This loop generates exactly how many characters they asked for above.
+  for (var characters = 1; characters <= numCharacters; characters++)
+  {
+    //First, pull randomly from the possible initial choices (upper/lower/numbers/specials).
+    var random =  possibles[Math.floor(Math.random() * possibles.length)];
 
-     // Now pull randomly from the initial random choice generated above
-     var result = random[Math.floor(Math.random() * random.length)];
+    // Now pull randomly from the initial random choice generated above.
+    var result = random[Math.floor(Math.random() * random.length)];
 
-     //We now have our random character!
-     results.push(result);
-   }
+    //We now have our random character! Add it to our results array.
+    results.push(result);
+  }
 
-   //Store the full array as a single password. Calling the join method will remove the "," character after each character in the array and combine them all into one.
-   var password = results.join("");
+  //Store the full array as a single password. Calling the join method will remove the "," character after each character in the array and combine them all into one.
+  var password = results.join("");
 
-   //We finally made it here! Return the final password to the function caller. 
-   return password;
+  //We finally made it here! Return the final password to the function caller. 
+  return password;
 }
 
 // Write password to the #password input
