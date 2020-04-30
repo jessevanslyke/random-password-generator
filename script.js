@@ -5,7 +5,7 @@ function generatePassword() {
   var lowerCaseLetters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
   var upperCaseLetters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
   var numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  var specialCharacters = ["!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "\\", "^", "_", "`", "{", "|", "}", "~"]
+  var specialCharacters = [" ", "!", "\"", "#", "$", "%", "&", "'", "(", ")", "*", "+", ",", "-", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "]", "\\", "^", "_", "`", "{", "|", "}", "~"]
   var allChoices = false;
   var wantslowerCase = false;
   var wantsUpperCase = false;
@@ -33,6 +33,8 @@ function generatePassword() {
     
     if(wantslowerCase || wantsUpperCase || wantsNumbers || wantsSpecialCharacters)
       allChoices = true;
+    else
+      alert("Please be sure to select at least one of the choices.");
   }
 
   if (wantslowerCase)
@@ -58,9 +60,12 @@ function generatePassword() {
      //We now have our random character!
      results.push(result);
    }
-   
-   //We finally made it here! Return the final result to the function caller.
-   return results;
+
+   //Store the full array as a single password. Calling the join method will remove the "," character after each character in the array and combine them all into one.
+   var password = results.join("");
+
+   //We finally made it here! Return the final password to the function caller. 
+   return password;
 }
 
 // Write password to the #password input
